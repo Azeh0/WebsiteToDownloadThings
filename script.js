@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkServerAvailability();
     
     function checkServerAvailability() {
-        const healthUrl = 'http://127.0.0.1:5000/health';
+        const healthUrl = 'http://10.0.0.113:5050/health';
         console.log(`Attempting health check at: ${healthUrl}`); // Log the attempt
         fetch(healthUrl)
             .then(response => {
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             addLogMessage(youtubeLog, "Sending request to backend...");
             
             // Add debugging for network requests
-            console.log('Sending request to:', 'http://127.0.0.1:5000/process-youtube');
+            console.log('Sending request to:', 'http://10.0.0.113:5050/process-youtube');
             console.log('Request body:', JSON.stringify({ 
                 url: url,
                 quality: 'best',
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }));
             
             // Make actual backend call to the Flask server
-            fetch('http://127.0.0.1:5000/process-youtube', {
+            fetch('http://10.0.0.113:5050/process-youtube', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data.status === 'Success' && data.path) {
                     addLogMessage(youtubeLog, `Server path: ${data.path}`);
                     if (data.downloadUrl) {
-                        const fullDownloadUrl = `http://127.0.0.1:5000${data.downloadUrl}`;
+                        const fullDownloadUrl = `http://10.0.0.113:5050${data.downloadUrl}`;
                         addLogMessage(youtubeLog, `Success! Starting download from ${fullDownloadUrl}`);
                         window.location.href = fullDownloadUrl; // Trigger download automatically
                     } else {
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- Backend Call ---
             // Make sure Flask server (app.py) is running on http://127.0.0.1:5000
-            fetch('http://127.0.0.1:5000/process-twitter', { // Use the Flask server address
+            fetch('http://10.0.0.113:5050/process-twitter', { // Use the Flask server address
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url: url })
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     addLogMessage(twitterLog, `Server path: ${data.path}`);
                     if (data.downloadUrl) {
                         // --- Auto-download Trigger ---
-                        const fullDownloadUrl = `http://127.0.0.1:5000${data.downloadUrl}`;
+                        const fullDownloadUrl = `http://10.0.0.113:5050${data.downloadUrl}`;
                         addLogMessage(twitterLog, `Success! Starting download from ${fullDownloadUrl}`);
                         window.location.href = fullDownloadUrl; // Trigger download automatically
                         // --- Remove link creation code ---
