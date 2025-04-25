@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Downloader</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        <nav class="tab-navigation">
+            <!-- Buttons to switch tabs. data-tab attribute links to the content ID -->
+            <button class="tab-button active" data-tab="youtube-download">YouTube Download</button>
+            <button class="tab-button" data-tab="twitter-gif">Twitter to GIF</button>
+            <button class="tab-button" data-tab="spotify-download">Spotify Downloader (NOT WORKING WIP)</button>
+        </nav>
+
+        <div class="tab-content-area">
+            <!-- Content for YouTube Download Tab -->
+            <div class="tab-content active" id="youtube-download">
+                <h2>YouTube Video Downloader</h2>
+                <p>Enter the YouTube video link below.</p>
+                <div class="input-group">
+                    <!-- Added ID -->
+                    <input type="text" id="youtube-link-input" class="link-input" placeholder="Input YouTube Link Here">
+                    <!-- Added ID -->
+                    <button id="youtube-confirm-button" class="confirm-button">Confirm</button>
+                </div>
+                <!-- Added ID -->
+                <textarea id="youtube-log" class="log-output" readonly placeholder="Log messages will appear here..."></textarea>
+            </div>
+
+            <!-- Content for Twitter to GIF Tab -->
+            <div class="tab-content" id="twitter-gif">
+                <h2>Twitter Link to GIF Converter</h2>
+                <p>Enter the Twitter link (Tweet containing video/GIF) below.</p>
+                 <div class="input-group">
+                    <!-- Added ID -->
+                    <input type="text" id="twitter-link-input" class="link-input" placeholder="Input Twitter Link Here">
+                    <!-- Added ID -->
+                    <button id="twitter-confirm-button" class="confirm-button">Confirm</button>
+                </div>
+                <!-- Added ID -->
+                <textarea id="twitter-log" class="log-output" readonly placeholder="Log messages will appear here..."></textarea>
+            </div>
+
+            <!-- Content for Spotify Downloader Tab -->
+            <div class="tab-content" id="spotify-download">
+                <h2>Spotify Downloader</h2>
+                <p>Enter the Spotify track or playlist link below.</p>
+                 <div class="input-group">
+                    <!-- Added ID -->
+                    <input type="text" id="spotify-link-input" class="link-input" placeholder="Input Spotify Link Here">
+                    <!-- Added ID -->
+                    <button id="spotify-confirm-button" class="confirm-button">Confirm</button>
+                </div>
+                <!-- Added ID -->
+                <textarea id="spotify-log" class="log-output" readonly placeholder="Log messages will appear here..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

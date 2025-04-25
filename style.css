@@ -1,0 +1,197 @@
+:root {
+    /* Define color palette based on the new image */
+    --bg-color: #2c3e50;           /* Dark blue-grey page background */
+    --container-bg: #4a6078;       /* Lighter blue-grey container */
+    --input-bg: #3c4d5e;           /* Darker input/log area */
+    --button-bg: transparent;      /* Tab button background - transparent/match container */
+    --button-hover-bg: #5f7a94;     /* Tab button hover - subtle change */
+    --button-active-underline: #3498db; /* Bright blue for active tab underline */
+    --confirm-button-bg: #3498db;   /* Bright blue confirm button */
+    --confirm-button-hover-bg: #2980b9; /* Darker blue on hover */
+    --confirm-button-active-bg: #1f618d; /* Even darker blue on click */
+    --text-color: #ecf0f1;         /* Light grey/off-white text */
+    --placeholder-color: #bdc3c7;   /* Medium grey for placeholders */
+    --border-color: #5f7a94;        /* Subtle border, slightly darker than container */
+    --border-radius: 8px;          /* Slightly more rounded corners */
+}
+
+/* Basic Reset and Body Styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;    /* Center vertically */
+    min-height: 100vh;
+    padding: 20px; /* Add padding around the container */
+}
+
+/* Main Application Container */
+.app-container {
+    background-color: var(--container-bg);
+    padding: 30px 40px; /* More horizontal padding */
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    width: 90%; /* Responsive width */
+    max-width: 750px; /* Max width on large screens */
+}
+
+/* Tab Navigation Buttons */
+.tab-navigation {
+    display: flex;
+    margin-bottom: 30px; /* Increased space below tabs */
+    border-bottom: 1px solid var(--border-color); /* Subtle line below tabs */
+}
+
+.tab-button {
+    flex-grow: 1; /* Make buttons share space equally */
+    padding: 15px 10px; /* Adjusted padding */
+    background-color: var(--button-bg);
+    border: none;
+    color: var(--placeholder-color); /* Default tab text is less prominent */
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    text-align: center;
+    position: relative; /* Needed for the ::after pseudo-element */
+    border-radius: 0; /* Tabs are not individually rounded */
+    outline: none; /* Remove default focus outline */
+}
+
+.tab-button:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--text-color); /* Make text clearer on hover */
+}
+
+/* Style for the currently active tab button */
+.tab-button.active {
+    color: var(--text-color); /* Active tab text is prominent */
+    background-color: transparent; /* Ensure no background overrides */
+}
+
+/* Active tab underline */
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; /* Align with the navigation border-bottom */
+    left: 0;
+    width: 100%;
+    height: 3px; /* Thickness of the underline */
+    background-color: var(--button-active-underline);
+    border-radius: 1px; /* Optional subtle rounding */
+}
+
+/* Tab Content Styling */
+.tab-content {
+    display: none; /* Hide inactive tabs by default */
+    animation: fadeIn 0.4s ease; /* Simple fade-in animation */
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Headings and Paragraphs within Tabs */
+.tab-content h2 {
+    margin-bottom: 8px;
+    font-weight: 500; /* Slightly bolder heading */
+    color: var(--text-color);
+    font-size: 1.4rem;
+}
+
+.tab-content p {
+    margin-bottom: 25px; /* More space before input */
+    font-size: 0.9rem;
+    color: var(--placeholder-color);
+    font-weight: 300;
+}
+
+/* Input Field and Confirm Button Group */
+.input-group {
+    display: flex;
+    margin-bottom: 25px;
+    gap: 10px; /* Space between input and button */
+}
+
+.link-input {
+    flex-grow: 1; /* Input takes available space */
+    padding: 12px 15px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.link-input::placeholder {
+    color: var(--placeholder-color);
+    font-weight: 300;
+}
+
+.link-input:focus {
+    outline: none;
+    border-color: var(--button-active-underline); /* Highlight border on focus */
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3); /* Subtle glow using accent color */
+}
+
+.confirm-button {
+    padding: 12px 25px;
+    background-color: var(--confirm-button-bg); /* Use accent color */
+    border: none;
+    border-radius: var(--border-radius);
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+.confirm-button:hover {
+    background-color: var(--confirm-button-hover-bg); /* Darker shade on hover */
+}
+
+.confirm-button:active {
+     background-color: var(--confirm-button-active-bg); /* Even darker shade on click */
+}
+
+
+/* Log Output Area */
+.log-output {
+    width: 100%;
+    height: 150px; /* Adjust height as needed */
+    background-color: var(--input-bg); /* Match input background */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    color: var(--text-color); /* Standard text color */
+    font-family: 'Courier New', Courier, monospace; /* Monospace for logs */
+    font-size: 0.9rem;
+    resize: vertical; /* Allow vertical resize */
+    overflow-y: auto; /* Add scrollbar if content overflows */
+}
+
+.log-output::placeholder {
+    color: var(--placeholder-color);
+    font-style: italic;
+    font-family: 'Roboto', sans-serif; /* Use main font for placeholder */
+}
+
+.log-output:focus {
+     outline: none;
+    border-color: var(--button-active-underline);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+}
